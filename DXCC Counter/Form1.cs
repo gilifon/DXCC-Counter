@@ -75,6 +75,7 @@ namespace DXCC_Counter
                 L_cont.Text = continents.Count.ToString();
                 L_prefix.Text = prefixes.Count.ToString();
                 L_Bands.Text = bands.Count.ToString();
+                L_Mode.Text = modes.Count.ToString();
                 L_qso.Text = qsos.Count.ToString();
 
                 entities.Sort();
