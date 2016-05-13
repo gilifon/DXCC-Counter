@@ -49,6 +49,9 @@
             this.L_Bands = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.LST_Bands = new System.Windows.Forms.ListBox();
+            this.L_Mode = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.LST_Mode = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -58,7 +61,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.Location = new System.Drawing.Point(622, 642);
+            this.button1.Location = new System.Drawing.Point(602, 637);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 33);
             this.button1.TabIndex = 0;
@@ -119,15 +122,15 @@
             // LST_Cont
             // 
             this.LST_Cont.FormattingEnabled = true;
-            this.LST_Cont.Location = new System.Drawing.Point(563, 42);
+            this.LST_Cont.Location = new System.Drawing.Point(563, 289);
             this.LST_Cont.Name = "LST_Cont";
-            this.LST_Cont.Size = new System.Drawing.Size(153, 212);
+            this.LST_Cont.Size = new System.Drawing.Size(153, 342);
             this.LST_Cont.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(560, 25);
+            this.label2.Location = new System.Drawing.Point(560, 272);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 8;
@@ -136,7 +139,7 @@
             // L_cont
             // 
             this.L_cont.AutoSize = true;
-            this.L_cont.Location = new System.Drawing.Point(643, 25);
+            this.L_cont.Location = new System.Drawing.Point(643, 272);
             this.L_cont.Name = "L_cont";
             this.L_cont.Size = new System.Drawing.Size(0, 13);
             this.L_cont.TabIndex = 9;
@@ -225,11 +228,39 @@
             this.LST_Bands.Size = new System.Drawing.Size(153, 212);
             this.LST_Bands.TabIndex = 17;
             // 
+            // L_Mode
+            // 
+            this.L_Mode.AutoSize = true;
+            this.L_Mode.Location = new System.Drawing.Point(612, 25);
+            this.L_Mode.Name = "L_Mode";
+            this.L_Mode.Size = new System.Drawing.Size(0, 13);
+            this.L_Mode.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(560, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "MODE:";
+            // 
+            // LST_Mode
+            // 
+            this.LST_Mode.FormattingEnabled = true;
+            this.LST_Mode.Location = new System.Drawing.Point(563, 42);
+            this.LST_Mode.Name = "LST_Mode";
+            this.LST_Mode.Size = new System.Drawing.Size(153, 212);
+            this.LST_Mode.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(748, 687);
+            this.ClientSize = new System.Drawing.Size(732, 687);
+            this.Controls.Add(this.L_Mode);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.LST_Mode);
             this.Controls.Add(this.L_Bands);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.LST_Bands);
@@ -250,6 +281,8 @@
             this.Controls.Add(this.L_dxcc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
+            this.MaximumSize = new System.Drawing.Size(748, 725);
+            this.MinimumSize = new System.Drawing.Size(748, 725);
             this.Name = "Form1";
             this.Text = "DXCC Counter (by 4Z1KD)";
             this.ResumeLayout(false);
@@ -280,6 +313,9 @@
         private System.Windows.Forms.Label L_Bands;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListBox LST_Bands;
+        private System.Windows.Forms.Label L_Mode;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ListBox LST_Mode;
     }
 }
 

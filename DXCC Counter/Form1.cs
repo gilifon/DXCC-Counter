@@ -27,6 +27,7 @@ namespace DXCC_Counter
         private List<string> zones = new List<string>();
         private List<string> prefixes = new List<string>();
         private List<string> bands = new List<string>();
+        private List<string> modes = new List<string>();
 
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
@@ -45,18 +46,21 @@ namespace DXCC_Counter
                 L_prefix.Text = "";
                 L_qso.Text = "";
                 L_Bands.Text = "";
+                L_Mode.Text = "";
 
                 LST_DXCC.Items.Clear();
                 LST_Zones.Items.Clear();
                 LST_Cont.Items.Clear();
                 LST_Prefix.Items.Clear();
                 LST_Bands.Items.Clear();
+                LST_Mode.Items.Clear();
 
                 entities.Clear();
                 zones.Clear();
                 continents.Clear();
                 bands.Clear();
                 prefixes.Clear();
+                modes.Clear();
 
                 NewExploreFile(file);
                 entities.AddRange(qsos.Where(p => p.country != null).Select(p => p.country + " (" + qsos.Where(t=>t.country == p.country).Count().ToString() + ")").Distinct());
@@ -64,6 +68,7 @@ namespace DXCC_Counter
                 continents.AddRange(qsos.Where(p => p.cont != null).Select(p => p.cont + " (" + qsos.Where(t => t.cont == p.cont).Count().ToString() + ")").Distinct());
                 bands.AddRange(qsos.Where(p => p.band != null).OrderBy(p => int.Parse(p.band.ToLower().Replace("cm", "").Replace("m", ""))).Select(p => p.band + " (" + qsos.Where(t => t.band == p.band).Count().ToString() + ")").Distinct());
                 prefixes.AddRange(qsos.Where(p => p.pfx != null).Select(p => p.pfx).Distinct());
+                modes.AddRange(qsos.Where(p => p.mode != null).Select(p => p.mode + " (" + qsos.Where(t => t.mode == p.mode).Count().ToString() + ")").Distinct());
 
                 L_dxcc.Text = entities.Count.ToString();
                 L_zones.Text = zones.Count.ToString();
@@ -86,6 +91,9 @@ namespace DXCC_Counter
 
                 //bands.Sort();
                 LST_Bands.Items.AddRange(bands.Cast<object>().ToArray());
+
+                modes.Sort();
+                LST_Mode.Items.AddRange(modes.Cast<object>().ToArray());
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -111,5 +119,7 @@ namespace DXCC_Counter
             parser.Parse();
             qsos = parser.QSO_List.ToList();
         }
+
+        
     }
 }

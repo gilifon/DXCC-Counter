@@ -46,7 +46,36 @@ namespace DXCC_Counter
             this.RawFile = adif;
             _QSO_List = new List<QSO>(200);
         }
-        
+
+        private void convertFreqToBand(QSO qso)
+        {
+            double parsedFreq;
+            if (!double.TryParse(qso.freq, out parsedFreq)) return;
+            if (parsedFreq < 30)
+            {
+                if (parsedFreq > 0 && parsedFreq < 2) qso.band = "160M";
+                if (parsedFreq > 2 && parsedFreq < 5) qso.band = "80M";
+                if (parsedFreq > 5 && parsedFreq < 8) qso.band = "40M";
+                if (parsedFreq > 10 && parsedFreq < 11) qso.band = "30M";
+                if (parsedFreq > 12 && parsedFreq < 16) qso.band = "20M";
+                if (parsedFreq > 19 && parsedFreq < 23) qso.band = "15M";
+                if (parsedFreq > 24 && parsedFreq < 25) qso.band = "15M";
+                if (parsedFreq > 25 && parsedFreq < 30) qso.band = "10M";
+            }
+            else
+            {
+                if (parsedFreq > 0 && parsedFreq < 2000) qso.band = "160M";
+                if (parsedFreq > 2000 && parsedFreq < 5000) qso.band = "80M";
+                if (parsedFreq > 5000 && parsedFreq < 8000) qso.band = "40M";
+                if (parsedFreq > 10000 && parsedFreq < 11000) qso.band = "30M";
+                if (parsedFreq > 12000 && parsedFreq < 16000) qso.band = "20M";
+                if (parsedFreq > 19000 && parsedFreq < 23000) qso.band = "15M";
+                if (parsedFreq > 24000 && parsedFreq < 25000) qso.band = "12M";
+                if (parsedFreq > 25000 && parsedFreq < 30000) qso.band = "10M";
+            }
+
+        }
+
         public bool Parse()
         {
             _QSO_List.Clear();
@@ -218,6 +247,11 @@ namespace DXCC_Counter
                 if (match.Success)
                 {
                     qso.qso_date = Regex.Split(raw_qso, qso_date_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                }
+
+                if (string.IsNullOrWhiteSpace(qso.band) && !string.IsNullOrWhiteSpace(qso.freq))
+                {
+                    convertFreqToBand(qso);
                 }
 
                 _QSO_List.Add(qso);
