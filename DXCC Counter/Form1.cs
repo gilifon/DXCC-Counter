@@ -20,6 +20,14 @@ namespace DXCC_Counter
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
         }
+
+        private List<QSO> qsos;
+        private List<string> entities = new List<string>();
+        private List<string> continents = new List<string>();
+        private List<string> zones = new List<string>();
+        private List<string> prefixes = new List<string>();
+        private List<string> bands = new List<string>();
+
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
@@ -30,7 +38,54 @@ namespace DXCC_Counter
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
-                ExploreFile(file);
+                L_filename.Text = file;
+                L_dxcc.Text = "";
+                L_zones.Text = "";
+                L_cont.Text = "";
+                L_prefix.Text = "";
+                L_qso.Text = "";
+                L_Bands.Text = "";
+
+                LST_DXCC.Items.Clear();
+                LST_Zones.Items.Clear();
+                LST_Cont.Items.Clear();
+                LST_Prefix.Items.Clear();
+                LST_Bands.Items.Clear();
+
+                entities.Clear();
+                zones.Clear();
+                continents.Clear();
+                bands.Clear();
+                prefixes.Clear();
+
+                NewExploreFile(file);
+                entities.AddRange(qsos.Where(p => p.country != null).Select(p => p.country + " (" + qsos.Where(t=>t.country == p.country).Count().ToString() + ")").Distinct());
+                zones.AddRange(qsos.Where(p => p.cqz != null).OrderBy(p => int.Parse(p.cqz)).Select(p => p.cqz + " (" + qsos.Where(t => t.cqz == p.cqz).Count().ToString() + ")").Distinct());
+                continents.AddRange(qsos.Where(p => p.cont != null).Select(p => p.cont + " (" + qsos.Where(t => t.cont == p.cont).Count().ToString() + ")").Distinct());
+                bands.AddRange(qsos.Where(p => p.band != null).OrderBy(p => int.Parse(p.band.ToLower().Replace("cm", "").Replace("m", ""))).Select(p => p.band + " (" + qsos.Where(t => t.band == p.band).Count().ToString() + ")").Distinct());
+                prefixes.AddRange(qsos.Where(p => p.pfx != null).Select(p => p.pfx).Distinct());
+
+                L_dxcc.Text = entities.Count.ToString();
+                L_zones.Text = zones.Count.ToString();
+                L_cont.Text = continents.Count.ToString();
+                L_prefix.Text = prefixes.Count.ToString();
+                L_Bands.Text = bands.Count.ToString();
+                L_qso.Text = qsos.Count.ToString();
+
+                entities.Sort();
+                LST_DXCC.Items.AddRange(entities.ToArray());
+
+                continents.Sort();
+                LST_Cont.Items.AddRange(continents.ToArray());
+
+                //zones.Sort();
+                LST_Zones.Items.AddRange(zones.Cast<object>().ToArray());
+
+                prefixes.Sort();
+                LST_Prefix.Items.AddRange(prefixes.Cast<object>().ToArray());
+
+                //bands.Sort();
+                LST_Bands.Items.AddRange(bands.Cast<object>().ToArray());
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -45,105 +100,16 @@ namespace DXCC_Counter
             if (result == DialogResult.OK) // Test result.
             {
                 string file = openFileDialog1.FileName;
-                ExploreFile(file);
+                NewExploreFile(file);
             }
         }
 
-        private void ExploreFile(string file)
+        private void NewExploreFile(string file)
         {
-            L_filename.Text = file;
-            L_dxcc.Text = "";
-            L_zones.Text = "";
-            L_cont.Text = "";
-            L_prefix.Text = "";
-            L_qso.Text = "";
-            LST_DXCC.Items.Clear();
-            LST_Zones.Items.Clear();
-            LST_Cont.Items.Clear();
-            LST_Prefix.Items.Clear();
-            try
-            {
-
-                string all = File.ReadAllText(file);
-                all = all.Replace("<", "\n<");
-                all = all.Replace("\r", "");
-                //string[] text = File.ReadAllLines(file);
-                string[] text = all.Split('\n');
-                string countryPattern = "<COUNTRY:\\d+>";
-                string zonePattern = "<CQZ:\\d+>";
-                string contPattern = "<cont:\\d+>";
-                string pfxPattern = "<pfx:\\d+>";
-                List<string> entities = new List<string>();
-                List<string> continents = new List<string>();
-                List<int> zones = new List<int>();
-                List<string> prefixes = new List<string>();
-
-                
-
-                int contactsCounter = 0;
-
-                foreach (string s in text)
-                {
-                    if (System.Text.RegularExpressions.Regex.IsMatch(s, countryPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                    {
-                        contactsCounter++;
-                        string matchDXCC = System.Text.RegularExpressions.Regex.Match(s, countryPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase).Value;
-                        string dxcc = s.Replace(matchDXCC, "");
-                        if (!entities.Contains(dxcc))
-                        {
-                            entities.Add(dxcc);
-                        }
-                    }
-                    if (System.Text.RegularExpressions.Regex.IsMatch(s, zonePattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                    {
-                        string match = System.Text.RegularExpressions.Regex.Match(s, zonePattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase).Value;
-                        int z = int.Parse(s.Replace(match, ""));
-                        if (!zones.Contains(z))
-                        {
-                            zones.Add(z);
-                        }
-                    }
-                    if (System.Text.RegularExpressions.Regex.IsMatch(s, contPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                    {
-                        string match = System.Text.RegularExpressions.Regex.Match(s, contPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase).Value;
-                        string cont = s.Replace(match, "");
-                        if (!continents.Contains(cont))
-                        {
-                            continents.Add(cont);
-                        }
-                    }
-                    if (System.Text.RegularExpressions.Regex.IsMatch(s, pfxPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                    {
-                        string match = System.Text.RegularExpressions.Regex.Match(s, pfxPattern, System.Text.RegularExpressions.RegexOptions.IgnoreCase).Value;
-                        string pfx = s.Replace(match, "");
-                        if (!prefixes.Contains(pfx))
-                        {
-                            prefixes.Add(pfx);
-                        }
-                    }
-
-                }
-                System.Console.WriteLine("Total DXCC: {0}", entities.Count.ToString());
-                System.Console.WriteLine("Total ZONES: {0}", zones.Count.ToString());
-                System.Console.WriteLine("Total CONTINENTS: {0}", continents.Count.ToString());
-                System.Console.WriteLine("Total PREFIXES: {0}", prefixes.Count.ToString());
-                L_dxcc.Text = entities.Count.ToString();
-                L_zones.Text = zones.Count.ToString();
-                L_cont.Text = continents.Count.ToString();
-                L_prefix.Text = prefixes.Count.ToString();
-                L_qso.Text = contactsCounter.ToString();
-                entities.Sort();
-                LST_DXCC.Items.AddRange(entities.ToArray());
-                continents.Sort();
-                LST_Cont.Items.AddRange(continents.ToArray());
-                zones.Sort();
-                LST_Zones.Items.AddRange(zones.Cast<object>().ToArray());
-                prefixes.Sort();
-                LST_Prefix.Items.AddRange(prefixes.Cast<object>().ToArray());
-            }
-            catch (IOException)
-            {
-            }
+            string all = File.ReadAllText(file);
+            ADIFParser parser = new ADIFParser(all);
+            parser.Parse();
+            qsos = parser.QSO_List.ToList();
         }
     }
 }

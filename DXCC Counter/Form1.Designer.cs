@@ -46,6 +46,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.L_filename = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.L_Bands = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.LST_Bands = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -55,7 +58,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.Location = new System.Drawing.Point(523, 642);
+            this.button1.Location = new System.Drawing.Point(622, 642);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 33);
             this.button1.TabIndex = 0;
@@ -83,7 +86,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(305, 25);
+            this.label3.Location = new System.Drawing.Point(222, 25);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 3;
@@ -92,7 +95,7 @@
             // L_zones
             // 
             this.L_zones.AutoSize = true;
-            this.L_zones.Location = new System.Drawing.Point(355, 25);
+            this.L_zones.Location = new System.Drawing.Point(272, 25);
             this.L_zones.Name = "L_zones";
             this.L_zones.Size = new System.Drawing.Size(0, 13);
             this.L_zones.TabIndex = 4;
@@ -102,13 +105,13 @@
             this.LST_DXCC.FormattingEnabled = true;
             this.LST_DXCC.Location = new System.Drawing.Point(15, 42);
             this.LST_DXCC.Name = "LST_DXCC";
-            this.LST_DXCC.Size = new System.Drawing.Size(274, 589);
+            this.LST_DXCC.Size = new System.Drawing.Size(194, 589);
             this.LST_DXCC.TabIndex = 5;
             // 
             // LST_Zones
             // 
             this.LST_Zones.FormattingEnabled = true;
-            this.LST_Zones.Location = new System.Drawing.Point(308, 42);
+            this.LST_Zones.Location = new System.Drawing.Point(225, 42);
             this.LST_Zones.Name = "LST_Zones";
             this.LST_Zones.Size = new System.Drawing.Size(153, 589);
             this.LST_Zones.TabIndex = 6;
@@ -116,7 +119,7 @@
             // LST_Cont
             // 
             this.LST_Cont.FormattingEnabled = true;
-            this.LST_Cont.Location = new System.Drawing.Point(484, 42);
+            this.LST_Cont.Location = new System.Drawing.Point(563, 42);
             this.LST_Cont.Name = "LST_Cont";
             this.LST_Cont.Size = new System.Drawing.Size(153, 212);
             this.LST_Cont.TabIndex = 7;
@@ -124,7 +127,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(481, 25);
+            this.label2.Location = new System.Drawing.Point(560, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 13);
             this.label2.TabIndex = 8;
@@ -133,7 +136,7 @@
             // L_cont
             // 
             this.L_cont.AutoSize = true;
-            this.L_cont.Location = new System.Drawing.Point(564, 25);
+            this.L_cont.Location = new System.Drawing.Point(643, 25);
             this.L_cont.Name = "L_cont";
             this.L_cont.Size = new System.Drawing.Size(0, 13);
             this.L_cont.TabIndex = 9;
@@ -141,7 +144,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(480, 272);
+            this.label4.Location = new System.Drawing.Point(390, 272);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 11;
@@ -150,7 +153,7 @@
             // LST_Prefix
             // 
             this.LST_Prefix.FormattingEnabled = true;
-            this.LST_Prefix.Location = new System.Drawing.Point(484, 289);
+            this.LST_Prefix.Location = new System.Drawing.Point(394, 289);
             this.LST_Prefix.Name = "LST_Prefix";
             this.LST_Prefix.Size = new System.Drawing.Size(153, 342);
             this.LST_Prefix.TabIndex = 10;
@@ -158,7 +161,7 @@
             // L_prefix
             // 
             this.L_prefix.AutoSize = true;
-            this.L_prefix.Location = new System.Drawing.Point(532, 272);
+            this.L_prefix.Location = new System.Drawing.Point(442, 272);
             this.L_prefix.Name = "L_prefix";
             this.L_prefix.Size = new System.Drawing.Size(0, 13);
             this.L_prefix.TabIndex = 12;
@@ -183,7 +186,7 @@
             // L_filename
             // 
             this.L_filename.AutoSize = true;
-            this.L_filename.Location = new System.Drawing.Point(389, 9);
+            this.L_filename.Location = new System.Drawing.Point(96, 642);
             this.L_filename.Name = "L_filename";
             this.L_filename.Size = new System.Drawing.Size(0, 13);
             this.L_filename.TabIndex = 16;
@@ -191,17 +194,45 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(305, 9);
+            this.label7.Location = new System.Drawing.Point(12, 642);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Log File Name:";
             // 
+            // L_Bands
+            // 
+            this.L_Bands.AutoSize = true;
+            this.L_Bands.Location = new System.Drawing.Point(443, 25);
+            this.L_Bands.Name = "L_Bands";
+            this.L_Bands.Size = new System.Drawing.Size(0, 13);
+            this.L_Bands.TabIndex = 19;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(391, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "BANDS:";
+            // 
+            // LST_Bands
+            // 
+            this.LST_Bands.FormattingEnabled = true;
+            this.LST_Bands.Location = new System.Drawing.Point(394, 42);
+            this.LST_Bands.Name = "LST_Bands";
+            this.LST_Bands.Size = new System.Drawing.Size(153, 212);
+            this.LST_Bands.TabIndex = 17;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 687);
+            this.ClientSize = new System.Drawing.Size(748, 687);
+            this.Controls.Add(this.L_Bands);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.LST_Bands);
             this.Controls.Add(this.L_filename);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.L_qso);
@@ -219,8 +250,6 @@
             this.Controls.Add(this.L_dxcc);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.MaximumSize = new System.Drawing.Size(665, 725);
-            this.MinimumSize = new System.Drawing.Size(665, 725);
             this.Name = "Form1";
             this.Text = "DXCC Counter (by 4Z1KD)";
             this.ResumeLayout(false);
@@ -248,6 +277,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label L_filename;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label L_Bands;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ListBox LST_Bands;
     }
 }
 
