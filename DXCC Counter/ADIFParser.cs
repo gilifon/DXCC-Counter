@@ -108,147 +108,147 @@ namespace DXCC_Counter
                 Match match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.address = Regex.Split(raw_qso, address_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.address = Regex.Split(raw_qso, address_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(band_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.band = Regex.Split(raw_qso, band_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.band = Regex.Split(raw_qso, band_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(call_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.call = Regex.Split(raw_qso, call_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.call = Regex.Split(raw_qso, call_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(commant_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.comment = Regex.Split(raw_qso, commant_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.comment = Regex.Split(raw_qso, commant_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(cont_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.cont = Regex.Split(raw_qso, cont_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.cont = Regex.Split(raw_qso, cont_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(country_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.country = Regex.Split(raw_qso, country_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.country = Regex.Split(raw_qso, country_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(cqz_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.cqz = Regex.Split(raw_qso, cqz_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.cqz = Regex.Split(raw_qso, cqz_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(dxcc_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.dxcc = Regex.Split(raw_qso, dxcc_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.dxcc = Regex.Split(raw_qso, dxcc_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(email_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.email = Regex.Split(raw_qso, email_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.email = Regex.Split(raw_qso, email_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(freq_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.freq = Regex.Split(raw_qso, freq_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.freq = Regex.Split(raw_qso, freq_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(gridsquare_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.gridsquare = Regex.Split(raw_qso, gridsquare_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.gridsquare = Regex.Split(raw_qso, gridsquare_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(ituz_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.ituz = Regex.Split(raw_qso, ituz_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.ituz = Regex.Split(raw_qso, ituz_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(mode_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.mode = Regex.Split(raw_qso, mode_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.mode = Regex.Split(raw_qso, mode_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(name_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.name = Regex.Split(raw_qso, name_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.name = Regex.Split(raw_qso, name_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(pfx_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.pfx = Regex.Split(raw_qso, pfx_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.pfx = Regex.Split(raw_qso, pfx_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(qth_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.qth = Regex.Split(raw_qso, qth_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.qth = Regex.Split(raw_qso, qth_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(rst_rcvd_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.rst_rcvd = Regex.Split(raw_qso, rst_rcvd_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.rst_rcvd = Regex.Split(raw_qso, rst_rcvd_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(rst_sent_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.rst_sent = Regex.Split(raw_qso, rst_sent_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.rst_sent = Regex.Split(raw_qso, rst_sent_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(timeoff_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.time_off = Regex.Split(raw_qso, timeoff_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.time_off = Regex.Split(raw_qso, timeoff_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(timeon_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.time_on = Regex.Split(raw_qso, timeon_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.time_on = Regex.Split(raw_qso, timeon_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 regex = new Regex(qso_date_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
                 {
-                    qso.qso_date = Regex.Split(raw_qso, qso_date_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
+                    qso.qso_date = Regex.Split(raw_qso, qso_date_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value)).Replace("'", "_");
                 }
 
                 if (string.IsNullOrWhiteSpace(qso.band) && !string.IsNullOrWhiteSpace(qso.freq))
@@ -267,9 +267,9 @@ namespace DXCC_Counter
             if (string.IsNullOrWhiteSpace(TableName)) return "";
             if (_QSO_List.Count == 0) return "";
 
-            StringBuilder sb = new StringBuilder("INSERT INTO ", 500);
+            StringBuilder sb = new StringBuilder("INSERT INTO `", 500);
             sb.Append(TableName);
-            sb.Append(" (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qth`, `qso_date`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`) VALUES ");
+            sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`) VALUES ");
 
             foreach (QSO qso in _QSO_List)
             {
@@ -278,7 +278,7 @@ namespace DXCC_Counter
                 sb.Append("'"); sb.Append(qso.band); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.call); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.comment); sb.Append("',");
-                sb.Append("'"); sb.Append("'"); sb.Append(qso.cont); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.cont); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.country); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.cqz); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.dxcc); sb.Append("',");

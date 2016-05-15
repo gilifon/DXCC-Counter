@@ -132,7 +132,7 @@ namespace DXCC_Counter
         {
             string all = File.ReadAllText(file);
             parser = new ADIFParser(all);
-            parser.TableName = "4XFF_Log";
+            parser.TableName = "log";
             parser.Parse();
             string insert = parser.GenerateInsert();
             Clipboard.SetText(insert);
