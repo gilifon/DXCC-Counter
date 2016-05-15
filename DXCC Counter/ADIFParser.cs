@@ -10,6 +10,7 @@ namespace DXCC_Counter
     class ADIFParser
     {
         public string RawFile { get; set; }
+        public string TableName { get; set; }
 
         public IList<QSO> QSO_List { get { return _QSO_List; } }
         private IList<QSO> _QSO_List;
@@ -37,7 +38,8 @@ namespace DXCC_Counter
         private string timeon_pattern = @"<time_on:(\d{1,2})(?::[a-z]{1})?>";
         private string qso_date_pattern = @"<qso_date:(\d{1,2})(?::[a-z]{1})?>";
 
-        public ADIFParser() : this("")
+        public ADIFParser()
+            : this("")
         {
         }
 
@@ -185,7 +187,7 @@ namespace DXCC_Counter
                 {
                     qso.ituz = Regex.Split(raw_qso, ituz_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
                 }
-                
+
                 regex = new Regex(mode_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
@@ -219,8 +221,8 @@ namespace DXCC_Counter
                 if (match.Success)
                 {
                     qso.rst_rcvd = Regex.Split(raw_qso, rst_rcvd_pattern, RegexOptions.IgnoreCase)[2].Substring(0, int.Parse(match.Groups[1].Value));
-                } 
-                
+                }
+
                 regex = new Regex(rst_sent_pattern, RegexOptions.IgnoreCase);
                 match = regex.Match(raw_qso);
                 if (match.Success)
@@ -259,6 +261,44 @@ namespace DXCC_Counter
             return true;
         }
 
+        public string GenerateInsert()
+        {
+            //validations
+            if (string.IsNullOrWhiteSpace(TableName)) return "";
+            if (_QSO_List.Count == 0) return "";
+
+            StringBuilder sb = new StringBuilder("INSERT INTO ", 500);
+            sb.Append(TableName);
+            sb.Append(" (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qth`, `qso_date`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`) VALUES ");
+
+            foreach (QSO qso in _QSO_List)
+            {
+                sb.Append("(");
+                sb.Append("'"); sb.Append(qso.address); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.band); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.call); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.comment); sb.Append("',");
+                sb.Append("'"); sb.Append("'"); sb.Append(qso.cont); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.country); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.cqz); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.dxcc); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.email); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.freq); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.gridsquare); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.ituz); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.mode); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.name); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.pfx); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.qso_date); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.qth); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.rst_rcvd); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.rst_sent); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.time_off); sb.Append("',");
+                sb.Append("'"); sb.Append(qso.time_on); sb.Append("'),");
+            }
+            sb.Remove(sb.Length - 1, 1);
+            return sb.ToString();
+        }
     }
 
     internal class QSO
@@ -278,11 +318,11 @@ namespace DXCC_Counter
         public string mode { get; set; }
         public string name { get; set; }
         public string pfx { get; set; }
+        public string qso_date { get; set; }
         public string qth { get; set; }
         public string rst_rcvd { get; set; }
         public string rst_sent { get; set; }
         public string time_off { get; set; }
-        public string time_on { get; set; }
-        public string qso_date { get; set; }
+        public string time_on { get; set; }        
     }
 }

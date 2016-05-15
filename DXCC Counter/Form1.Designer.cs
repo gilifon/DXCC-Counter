@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_LoadAdif = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.L_dxcc = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,22 +52,23 @@
             this.L_Mode = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LST_Mode = new System.Windows.Forms.ListBox();
+            this.Btn_GenerateInsert = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button1
+            // Btn_LoadAdif
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.Location = new System.Drawing.Point(602, 637);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 33);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Load ADIF";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_LoadAdif.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.Btn_LoadAdif.Location = new System.Drawing.Point(563, 637);
+            this.Btn_LoadAdif.Name = "Btn_LoadAdif";
+            this.Btn_LoadAdif.Size = new System.Drawing.Size(153, 33);
+            this.Btn_LoadAdif.TabIndex = 0;
+            this.Btn_LoadAdif.Text = "Load ADIF";
+            this.Btn_LoadAdif.UseVisualStyleBackColor = true;
+            this.Btn_LoadAdif.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -253,11 +254,23 @@
             this.LST_Mode.Size = new System.Drawing.Size(153, 212);
             this.LST_Mode.TabIndex = 20;
             // 
+            // Btn_GenerateInsert
+            // 
+            this.Btn_GenerateInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_GenerateInsert.Location = new System.Drawing.Point(393, 637);
+            this.Btn_GenerateInsert.Name = "Btn_GenerateInsert";
+            this.Btn_GenerateInsert.Size = new System.Drawing.Size(154, 33);
+            this.Btn_GenerateInsert.TabIndex = 23;
+            this.Btn_GenerateInsert.Text = "Generate Insert";
+            this.Btn_GenerateInsert.UseVisualStyleBackColor = true;
+            this.Btn_GenerateInsert.Click += new System.EventHandler(this.Btn_GenerateInsert_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 687);
+            this.Controls.Add(this.Btn_GenerateInsert);
             this.Controls.Add(this.L_Mode);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.LST_Mode);
@@ -280,7 +293,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.L_dxcc);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_LoadAdif);
             this.MaximumSize = new System.Drawing.Size(748, 725);
             this.MinimumSize = new System.Drawing.Size(748, 725);
             this.Name = "Form1";
@@ -293,7 +306,7 @@
         #endregion
 
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_LoadAdif;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label L_dxcc;
         private System.Windows.Forms.Label label3;
@@ -316,6 +329,7 @@
         private System.Windows.Forms.Label L_Mode;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox LST_Mode;
+        private System.Windows.Forms.Button Btn_GenerateInsert;
     }
 }
 

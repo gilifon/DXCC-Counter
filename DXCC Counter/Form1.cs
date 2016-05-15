@@ -28,12 +28,13 @@ namespace DXCC_Counter
         private List<string> prefixes = new List<string>();
         private List<string> bands = new List<string>();
         private List<string> modes = new List<string>();
+        ADIFParser parser;
 
-        void Form1_DragEnter(object sender, DragEventArgs e)
+        //Event Handlers
+        private void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
-
         private void Form1_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -50,6 +51,17 @@ namespace DXCC_Counter
             {
                 string file = openFileDialog1.FileName;
                 ParseAndSetUI(file);
+            }
+        }
+        private void Btn_GenerateInsert_Click(object sender, EventArgs e)
+        {
+            if (parser == null)
+                MessageBox.Show("You have to parse the file first");
+            else
+            {
+                string insert = parser.GenerateInsert();
+                MessageBox.Show(insert);
+                Clipboard.SetText(insert);
             }
         }
 
@@ -112,14 +124,22 @@ namespace DXCC_Counter
 
             modes.Sort();
             LST_Mode.Items.AddRange(modes.Cast<object>().ToArray());
+
+            QSO first = qsos.OrderBy(p => p.qso_date + p.time_on).FirstOrDefault();
+            QSO last = qsos.OrderByDescending(p => p.qso_date + p.time_on).FirstOrDefault();
         }
         private void NewExploreFile(string file)
         {
             string all = File.ReadAllText(file);
-            ADIFParser parser = new ADIFParser(all);
+            parser = new ADIFParser(all);
+            parser.TableName = "4XFF_Log";
             parser.Parse();
+            string insert = parser.GenerateInsert();
+            Clipboard.SetText(insert);
             qsos = parser.QSO_List.ToList();
         }
+
+        
 
         
     }
