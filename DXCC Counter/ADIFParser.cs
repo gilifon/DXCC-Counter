@@ -267,7 +267,7 @@ namespace DXCC_Counter
             if (string.IsNullOrWhiteSpace(TableName)) return "";
             if (_QSO_List.Count == 0) return "";
 
-            StringBuilder sb = new StringBuilder("INSERT INTO `", 500);
+            StringBuilder sb = new StringBuilder("INSERT IGNORE INTO `", 500);
             sb.Append(TableName);
             sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`) VALUES ");
 
