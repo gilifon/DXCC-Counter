@@ -52,7 +52,7 @@
             this.L_Mode = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LST_Mode = new System.Windows.Forms.ListBox();
-            this.Btn_GenerateInsert = new System.Windows.Forms.Button();
+            this.UploadBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -254,23 +254,23 @@
             this.LST_Mode.Size = new System.Drawing.Size(153, 212);
             this.LST_Mode.TabIndex = 20;
             // 
-            // Btn_GenerateInsert
+            // UploadBtn
             // 
-            this.Btn_GenerateInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_GenerateInsert.Location = new System.Drawing.Point(393, 637);
-            this.Btn_GenerateInsert.Name = "Btn_GenerateInsert";
-            this.Btn_GenerateInsert.Size = new System.Drawing.Size(154, 33);
-            this.Btn_GenerateInsert.TabIndex = 23;
-            this.Btn_GenerateInsert.Text = "Generate Insert";
-            this.Btn_GenerateInsert.UseVisualStyleBackColor = true;
-            this.Btn_GenerateInsert.Click += new System.EventHandler(this.Btn_GenerateInsert_Click);
+            this.UploadBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UploadBtn.Location = new System.Drawing.Point(393, 637);
+            this.UploadBtn.Name = "UploadBtn";
+            this.UploadBtn.Size = new System.Drawing.Size(154, 33);
+            this.UploadBtn.TabIndex = 24;
+            this.UploadBtn.Text = "Upload Log";
+            this.UploadBtn.UseVisualStyleBackColor = true;
+            this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 687);
-            this.Controls.Add(this.Btn_GenerateInsert);
+            this.Controls.Add(this.UploadBtn);
             this.Controls.Add(this.L_Mode);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.LST_Mode);
@@ -329,7 +329,7 @@
         private System.Windows.Forms.Label L_Mode;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox LST_Mode;
-        private System.Windows.Forms.Button Btn_GenerateInsert;
+        private System.Windows.Forms.Button UploadBtn;
     }
 }
 

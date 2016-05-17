@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,6 +31,7 @@ namespace DXCC_Counter
         private List<string> prefixes = new List<string>();
         private List<string> bands = new List<string>();
         private List<string> modes = new List<string>();
+        string insertQuery;
         ADIFParser parser;
 
         //Event Handlers
@@ -53,18 +57,6 @@ namespace DXCC_Counter
                 ParseAndSetUI(file);
             }
         }
-        private void Btn_GenerateInsert_Click(object sender, EventArgs e)
-        {
-            if (parser == null)
-                MessageBox.Show("You have to parse the file first");
-            else
-            {
-                string insert = parser.GenerateInsert();
-                MessageBox.Show(insert);
-                Clipboard.SetText(insert);
-            }
-        }
-
         private void ParseAndSetUI(string filename)
         {
             L_filename.Text = filename;
@@ -134,13 +126,29 @@ namespace DXCC_Counter
             parser = new ADIFParser(all);
             parser.TableName = "log";
             parser.Parse();
-            string insert = parser.GenerateInsert();
-            Clipboard.SetText(insert);
+            insertQuery = parser.GenerateInsert();
+            Clipboard.SetText(insertQuery);
             qsos = parser.QSO_List.ToList();
         }
-
         
+        private void UploadBtn_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(insertQuery))
+                MessageBox.Show("You should first load your log file");
+            else
+            {
+                using (WebClient client = new WebClient())
+                {
+                    byte[] response =
+                    client.UploadValues("http://iarc.org/kdlog/Server/AddLog.php", new NameValueCollection()
+                    {
+                        { "insertlog", insertQuery }
+                    });
+                    string result = System.Text.Encoding.UTF8.GetString(response);
+                    MessageBox.Show(result);
+                }
+            }
+        }
 
-        
     }
 }
