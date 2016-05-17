@@ -53,6 +53,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.LST_Mode = new System.Windows.Forms.ListBox();
             this.UploadBtn = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TB_4XFFRef = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -125,7 +127,7 @@
             this.LST_Cont.FormattingEnabled = true;
             this.LST_Cont.Location = new System.Drawing.Point(563, 289);
             this.LST_Cont.Name = "LST_Cont";
-            this.LST_Cont.Size = new System.Drawing.Size(153, 342);
+            this.LST_Cont.Size = new System.Drawing.Size(153, 173);
             this.LST_Cont.TabIndex = 7;
             // 
             // label2
@@ -265,11 +267,29 @@
             this.UploadBtn.UseVisualStyleBackColor = true;
             this.UploadBtn.Click += new System.EventHandler(this.UploadBtn_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(560, 486);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "4XFF Ref:";
+            // 
+            // TB_4XFFRef
+            // 
+            this.TB_4XFFRef.Location = new System.Drawing.Point(563, 502);
+            this.TB_4XFFRef.Name = "TB_4XFFRef";
+            this.TB_4XFFRef.Size = new System.Drawing.Size(153, 20);
+            this.TB_4XFFRef.TabIndex = 26;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(732, 687);
+            this.Controls.Add(this.TB_4XFFRef);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.UploadBtn);
             this.Controls.Add(this.L_Mode);
             this.Controls.Add(this.label9);
@@ -330,6 +350,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox LST_Mode;
         private System.Windows.Forms.Button UploadBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TB_4XFFRef;
     }
 }
 

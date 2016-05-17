@@ -126,29 +126,27 @@ namespace DXCC_Counter
             parser = new ADIFParser(all);
             parser.TableName = "log";
             parser.Parse();
-            insertQuery = parser.GenerateInsert();
-            Clipboard.SetText(insertQuery);
             qsos = parser.QSO_List.ToList();
         }
-        
+
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(insertQuery))
-                MessageBox.Show("You should first load your log file");
-            else
+            if (parser == null) return;
+
+            parser.Reference = TB_4XFFRef.Text;
+            insertQuery = parser.GenerateInsert();
+            Clipboard.SetText(insertQuery);
+
+            using (WebClient client = new WebClient())
             {
-                using (WebClient client = new WebClient())
-                {
-                    byte[] response =
-                    client.UploadValues("http://iarc.org/kdlog/Server/AddLog.php", new NameValueCollection()
+                byte[] response =
+                client.UploadValues("http://iarc.org/kdlog/Server/AddLog.php", new NameValueCollection()
                     {
                         { "insertlog", insertQuery }
                     });
-                    string result = System.Text.Encoding.UTF8.GetString(response);
-                    MessageBox.Show(result);
-                }
+                string result = System.Text.Encoding.UTF8.GetString(response);
+                MessageBox.Show(result);
             }
         }
-
     }
 }

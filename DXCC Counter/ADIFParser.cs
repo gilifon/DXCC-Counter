@@ -11,6 +11,7 @@ namespace DXCC_Counter
     {
         public string RawFile { get; set; }
         public string TableName { get; set; }
+        public string Reference { get; set; }
 
         public IList<QSO> QSO_List { get { return _QSO_List; } }
         private IList<QSO> _QSO_List;
@@ -269,7 +270,7 @@ namespace DXCC_Counter
 
             StringBuilder sb = new StringBuilder("INSERT IGNORE INTO `", 500);
             sb.Append(TableName);
-            sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`) VALUES ");
+            sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`, `wwff_ref`) VALUES ");
 
             foreach (QSO qso in _QSO_List)
             {
@@ -294,7 +295,8 @@ namespace DXCC_Counter
                 sb.Append("'"); sb.Append(qso.rst_rcvd); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.rst_sent); sb.Append("',");
                 sb.Append("'"); sb.Append(qso.time_off); sb.Append("',");
-                sb.Append("'"); sb.Append(qso.time_on); sb.Append("'),");
+                sb.Append("'"); sb.Append(qso.time_on); sb.Append("',");
+                sb.Append("'"); sb.Append(Reference); sb.Append("'),");
             }
             sb.Remove(sb.Length - 1, 1);
             return sb.ToString();
