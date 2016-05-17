@@ -158,8 +158,10 @@
             // 
             // LST_Prefix
             // 
+            this.LST_Prefix.ColumnWidth = 30;
             this.LST_Prefix.FormattingEnabled = true;
             this.LST_Prefix.Location = new System.Drawing.Point(394, 289);
+            this.LST_Prefix.MultiColumn = true;
             this.LST_Prefix.Name = "LST_Prefix";
             this.LST_Prefix.Size = new System.Drawing.Size(153, 342);
             this.LST_Prefix.TabIndex = 10;
