@@ -16,6 +16,8 @@ namespace DXCC_Counter
         public IList<QSO> QSO_List { get { return _QSO_List; } }
         private IList<QSO> _QSO_List;
 
+        public ProjectType Project { get; set; }
+
         //patterns
         private string address_pattern = @"<address:(\d{1,2})(?::[a-z]{1})?>";
         private string band_pattern = @"<band:(\d{1,2})(?::[a-z]{1})?>";
@@ -267,10 +269,23 @@ namespace DXCC_Counter
             //validations
             if (string.IsNullOrWhiteSpace(TableName)) return "";
             if (_QSO_List.Count == 0) return "";
+            string refTable = "";
+
+            switch (Project)
+            {
+                case ProjectType._4XFF:
+                    refTable = "`wwff_ref`";
+                    break;
+                case ProjectType._4X4TRAIL:
+                    refTable = "`section`";
+                    break;
+                default:
+                    break;
+            }
 
             StringBuilder sb = new StringBuilder("INSERT IGNORE INTO `", 500);
             sb.Append(TableName);
-            sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`, `wwff_ref`) VALUES ");
+            sb.Append("` (`address`, `band`, `call`, `comment`, `cont`, `country`, `cqz`, `dxcc`, `email`, `freq`, `gridsquare`, `ituz`, `mode`, `name`, `pfx`, `qso_date`, `qth`, `rst_rcvd`, `rst_sent`, `time_off`, `time_on`, " + refTable + ") VALUES ");
 
             foreach (QSO qso in _QSO_List)
             {
@@ -326,5 +341,10 @@ namespace DXCC_Counter
         public string rst_sent { get; set; }
         public string time_off { get; set; }
         public string time_on { get; set; }        
+    }
+
+    internal enum ProjectType
+    {
+        _4XFF = 0, _4X4TRAIL
     }
 }

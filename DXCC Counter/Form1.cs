@@ -22,6 +22,9 @@ namespace DXCC_Counter
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
+
+            TB_4XFFRef.Enabled = CBX_WWFF.Checked;
+            TB_4X4TrailSection.Enabled = CBX_4X4Trail.Checked;
         }
 
         private List<QSO> qsos;
@@ -128,24 +131,67 @@ namespace DXCC_Counter
             parser.Parse();
             qsos = parser.QSO_List.ToList();
         }
-
+        private void CBX_WWFF_CheckedChanged(object sender, EventArgs e)
+        {
+            TB_4XFFRef.Enabled = CBX_WWFF.Checked;
+        }
+        private void CBX_4X4Trail_CheckedChanged(object sender, EventArgs e)
+        {
+            TB_4X4TrailSection.Enabled = CBX_4X4Trail.Checked;
+        }
         private void UploadBtn_Click(object sender, EventArgs e)
         {
-            if (parser == null) return;
-
-            parser.Reference = TB_4XFFRef.Text;
-            insertQuery = parser.GenerateInsert();
-            Clipboard.SetText(insertQuery);
-
-            using (WebClient client = new WebClient())
+            if (parser == null)
             {
-                byte[] response =
-                client.UploadValues("http://iarc.org/kdlog/Server/AddLog.php", new NameValueCollection()
+                MessageBox.Show("Nothing to upload..");
+                return;
+            }
+            if (CBX_WWFF.Checked && string.IsNullOrEmpty(TB_4XFFRef.Text))
+            {
+                MessageBox.Show("Did you forget to enter WWFF Ref?");
+                return;
+            }
+            if (CBX_4X4Trail.Checked && string.IsNullOrEmpty(TB_4X4TrailSection.Text))
+            {
+                MessageBox.Show("Did you forget to enter 4X4Trail section?");
+                return;
+            }
+
+            if (CBX_WWFF.Checked && !string.IsNullOrEmpty(TB_4XFFRef.Text))
+            {
+                parser.Project = ProjectType._4XFF;
+                parser.Reference = TB_4XFFRef.Text;
+                insertQuery = parser.GenerateInsert();
+                Clipboard.SetText(insertQuery);
+
+                using (WebClient client = new WebClient())
+                {
+                    byte[] response =
+                    client.UploadValues("http://iarc.org/kdlog/Server/AddLog.php", new NameValueCollection()
                     {
                         { "insertlog", insertQuery }
                     });
-                string result = System.Text.Encoding.UTF8.GetString(response);
-                MessageBox.Show(result);
+                    string result = System.Text.Encoding.UTF8.GetString(response);
+                    MessageBox.Show(result);
+                }
+            }
+            if (CBX_4X4Trail.Checked && !string.IsNullOrEmpty(TB_4X4TrailSection.Text))
+            {
+                parser.Project = ProjectType._4X4TRAIL;
+                parser.Reference = TB_4X4TrailSection.Text;
+                insertQuery = parser.GenerateInsert();
+                Clipboard.SetText(insertQuery);
+
+                using (WebClient client = new WebClient())
+                {
+                    byte[] response =
+                    client.UploadValues("http://iarc.org/4x4trail/Server/AddLog.php", new NameValueCollection()
+                    {
+                        { "insertlog", insertQuery }
+                    });
+                    string result = System.Text.Encoding.UTF8.GetString(response);
+                    MessageBox.Show(result);
+                }
             }
         }
     }
